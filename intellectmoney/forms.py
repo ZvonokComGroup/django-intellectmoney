@@ -123,7 +123,7 @@ class ResultUrlForm(_BasePaymentForm):
     def clean_secretKey(self):
         secretKey = self.cleaned_data['secretKey']
         if settings.SEND_SECRETKEY:
-            if secretKey != settings.SEND_SECRETKEY:
+            if secretKey != settings.SECRETKEY:
                 raise forms.ValidationError(u'Неверное значение')
         return secretKey
 

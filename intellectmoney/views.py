@@ -18,7 +18,7 @@ def receive_result(request):
     preffix = 'IntellectMoney: '
     info = request.POST
     if ip != settings.IP:
-        subject = u'%sОповещение о платеже с неправильного ip'  % preffix
+        subject = u'Оповещение о платеже с неправильного ip={}'.format(preffix, ip)
         mail_admins(subject, message=u'Дата: %s' % info)
         raise Http404
     form = ResultUrlForm(request.POST)

@@ -35,32 +35,57 @@ class _BasePaymentForm(_BaseForm):
 class IntellectMoneyForm(_BasePaymentForm):
     """Payment request form."""
 
+    PREFERENCE_INNER = 'inner'
+    PREFERENCE_BANKCARD = 'bankCard'
+    PREFERENCE_EXCHANGERS = 'exchangers'
+    PREFERENCE_TERMINALS = 'terminals'
+    PREFERENCE_TRANSFERS = 'transfers'
+    PREFERENCE_SMS = 'sms'
+    PREFERENCE_BANK = 'bank'
+
+    # exchangers
+    PREFERENCE_TELEMONEY = 'telemoney'
+    PREFERENCE_RBKMONEY = 'rbkmoney'
+    PREFERENCE_YANDEX = 'yandex'
+    PREFERENCE_MONEYMAIL = 'moneymail'
+    PREFERENCE_WALET = 'walet'
+    PREFERENCE_EASYPAY = 'easypay'
+    PREFERENCE_LIQPAY = 'liqpay'
+    PREFERENCE_ZPAYMENT = 'zpayment'
+    PREFERENCE_QIWIPURSE = 'qiwipurse'
+    PREFERENCE_VKONTAKTEBANK = 'vkontaktebank'
+    PREFERENCE_MAILRU = 'mailru'
+    PREFERENCE_AMEGAEKO = 'amegaeko'
+    PREFERENCE_MOBIMONEY = 'mobimoney'
+    PREFERENCE_RAPIDA = 'rapida'
+    PREFERENCE_ALFACLICK = 'alfaclick'
+
     PREFERENCE_CHOICES = [
         # common
-        ('inner', 'IntellectMoney'),
-        ('bankCard', 'Visa/MasterCard'),
-        ('exchangers', u'Internet Exchangers'),
-        ('terminals', u'Terminals'),
-        ('transfers', u'Transfers'),
-        ('sms', 'SMS'),
-        ('bank', u'Bank'),
+        (PREFERENCE_INNER, 'IntellectMoney'),
+        (PREFERENCE_BANKCARD, 'Visa/MasterCard'),
+        (PREFERENCE_EXCHANGERS, u'Internet Exchangers'),
+        (PREFERENCE_TERMINALS, u'Terminals'),
+        (PREFERENCE_TRANSFERS, u'Transfers'),
+        (PREFERENCE_SMS, 'SMS'),
+        (PREFERENCE_BANK, u'Bank'),
 
         # exchangers
-        ('telemoney', 'Telemoney'),
-        ('rbkmoney', 'RBKMoney'),
-        ('yandex', u'Яндекс.деньги'),
-        ('moneymail', u'MoneyMail'),
-        ('walet', u'Единый кошелек'),
-        ('easypay', u'EasyPay'),
-        ('liqpay', u'LiqPay'),
-        ('zpayment', u'Zpayment'),
-        ('qiwipurse', u'QIWI Кошелек'),
-        ('vkontaktebank', u'В Контакте'),
-        ('mailru', u'Деньги@Mail.Ru'),
-        ('amegaeko', u'Единая Кнопка Оплаты'),
-        ('mobimoney', u'С баланса телефона'),
-        ('rapida', u'В салонах связи'),
-        ('alfaclick', u'AlfaClick'),
+        (PREFERENCE_TELEMONEY, 'Telemoney'),
+        (PREFERENCE_RBKMONEY, 'RBKMoney'),
+        (PREFERENCE_YANDEX, u'Яндекс.деньги'),
+        (PREFERENCE_MONEYMAIL, u'MoneyMail'),
+        (PREFERENCE_WALET, u'Единый кошелек'),
+        (PREFERENCE_EASYPAY, u'EasyPay'),
+        (PREFERENCE_LIQPAY, u'LiqPay'),
+        (PREFERENCE_ZPAYMENT, u'Zpayment'),
+        (PREFERENCE_QIWIPURSE, u'QIWI Кошелек'),
+        (PREFERENCE_VKONTAKTEBANK, u'В Контакте'),
+        (PREFERENCE_MAILRU, u'Деньги@Mail.Ru'),
+        (PREFERENCE_AMEGAEKO, u'Единая Кнопка Оплаты'),
+        (PREFERENCE_MOBIMONEY, u'С баланса телефона'),
+        (PREFERENCE_RAPIDA, u'В салонах связи'),
+        (PREFERENCE_ALFACLICK, u'AlfaClick'),
 
         # groups
         ('inner,bankCard,exchangers,terminals,bank,transfers,sms', u'All'),

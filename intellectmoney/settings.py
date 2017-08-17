@@ -6,8 +6,9 @@ from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
 from django.contrib.sites.shortcuts import get_current_site
 
-URL = getattr(settings, 'INTELLECTMONEY_URL',
-              'https://merchant.intellectmoney.ru/ru/')
+URL = getattr(settings, 'INTELLECTMONEY_URL', 'https://merchant.intellectmoney.ru/ru/')
+
+CHECK_IP_ENABLED = getattr(settings, 'INTELLECTMONEY_CHECK_IP_ENABLED', True)
 IP = getattr(settings, 'INTELLECTMONEY_IP', '91.212.151.242')
 
 SHOPID = getattr(settings, 'INTELLECTMONEY_SHOPID', None)

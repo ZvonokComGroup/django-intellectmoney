@@ -17,7 +17,7 @@ def receive_result(request):
     ip = request.META['REMOTE_ADDR']
     preffix = 'IntellectMoney: '
     info = request.POST
-    if ip != settings.IP:
+    if settings.CHECK_IP_ENABLED and ip != settings.IP:
         subject = u'{}Оповещение о платеже с неправильного ip={}'.format(preffix, ip)
         mail_admins(subject, message=u'Дата: %s' % info)
         raise Http404

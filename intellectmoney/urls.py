@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import url, include
+from intellectmoney import views
 
-urlpatterns = patterns('intellectmoney.views',
-    url(r'^result/$',  'receive_result', name='intellectmoney-result'),
-    url(r'^success/result/$',  'success', name='intellectmoney-success'),
-    url(r'^fail/result/$',  'fail', name='intellectmoney-fail'),
-
-)
+urlpatterns = [
+    url(r'^result/$', views.receive_result, name='intellectmoney-result'),
+    url(r'^success/result/$', views.success, name='intellectmoney-success'),
+    url(r'^fail/result/$', views.fail, name='intellectmoney-fail'),
+]

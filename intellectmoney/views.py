@@ -6,8 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
 
-from annoying.functions import get_object_or_None
-
 from intellectmoney import settings
 from intellectmoney.forms import ResultUrlForm
 from intellectmoney.models import IntellectMoney
@@ -30,7 +28,10 @@ def receive_result(request):
         orderId = data['orderId']
         recipientAmount = data['recipientAmount']
         paymentId = data['paymentId']
-        invoice = get_object_or_None(IntellectMoney, orderId=orderId)
+        try:
+            invoice = IntellectMoney.objects.get(orderId=orderId)
+        except IntellectMoney.DoesNotExist:
+            invoice = None
         if not invoice:
             subject = u'%sОповещение об оплате несуществующего счета #%s' % (
                 preffix, paymentId

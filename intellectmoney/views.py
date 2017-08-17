@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.core.mail import mail_admins
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.template.context import RequestContext
 
 from intellectmoney import settings
 from intellectmoney.forms import ResultUrlForm
@@ -68,13 +67,9 @@ def receive_result(request):
 
 @csrf_exempt
 def success(request):
-    return render_to_response('intellectmoney/success.html',
-        context_instance=RequestContext(request)
-    )
+    return render(request, 'intellectmoney/success.html')
 
 
 @csrf_exempt
 def fail(request):
-    return render_to_response('intellectmoney/fail.html',
-        context_instance=RequestContext(request)
-    )
+    return request(request, 'intellectmoney/fail.html')

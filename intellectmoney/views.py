@@ -59,8 +59,8 @@ def receive_result(request):
             mail_admins(subject, message=u'Дата: %s' % info)
         return HttpResponse('OK')
     else:
-        subject = u'%sФорма оповещения платежа: невалидные данные' % preffix
-        body = u'Ошибки в форме: %s\n\nДанные:%s' % (unicode(form.errors), info)
+        subject = '{}Форма оповещения платежа: невалидные данные'.format(preffix)
+        body = 'Ошибки в форме: {}\n\nДанные:{}'.format(form.errors, info)
         mail_admins(subject, message=body)
         return HttpResponse('Bad', status=400)
 

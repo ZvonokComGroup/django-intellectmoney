@@ -12,11 +12,11 @@ setup(
     author='Ivan Petukhov',
     author_email='satels@gmail.com',
     packages=find_packages(exclude=['docs', 'tests']),
-    url='http://satels.blogspot.com/',
+    url='https://www.kontrolnaya-rabota.ru/diario/',
     download_url='https://github.com/satels/django-intellectmoney/zipball/master',
     license='MIT license',
     description=u'Приложение для работы с intellectmoney.ru.',
-    long_description=file(
+    long_description=open(
         os.path.join(
             os.path.dirname(__file__),
             'README.md'

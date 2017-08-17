@@ -9,6 +9,15 @@ from intellectmoney import settings
 from intellectmoney.forms import ResultUrlForm
 from intellectmoney.models import IntellectMoney
 from intellectmoney.signals import result_received
+import logging
+
+
+logger = logging.getLogger('intellectmoney')
+
+
+def _send_admin_email(subject, message):
+    mail_admins(subject, message=message)
+    logger.warn(u'{}: {}'.format(subject, message))
 
 
 @csrf_exempt
@@ -19,7 +28,8 @@ def receive_result(request):
     info = request.POST
     if settings.CHECK_IP_ENABLED and ip != settings.IP:
         subject = u'{}Оповещение о платеже с неправильного ip={}'.format(preffix, ip)
-        mail_admins(subject, message=u'Дата: %s' % info)
+        message = u'Дата: {}'.format(info)
+        _send_admin_email(subject, message)
         raise Http404
     form = ResultUrlForm(request.POST)
     if form.is_valid():
@@ -35,7 +45,7 @@ def receive_result(request):
             subject = u'%sОповещение об оплате несуществующего счета #%s' % (
                 preffix, paymentId
             )
-            mail_admins(subject, message=u'Дата: %s' % info)
+            _send_admin_email(subject, u'Дата: %s' % info)
             return HttpResponse('OK')
         paymentStatus = data['paymentStatus']
         if paymentStatus in [5, 6, 7]:
@@ -48,7 +58,7 @@ def receive_result(request):
                 message = u'%sОплачен счет %s (%s руб)' % (
                    preffix, orderId, recipientAmount,
                 )
-            mail_admins(subject, message=message)
+            _send_admin_email(subject, message)
             result_received.send(
                 sender=invoice, orderId=orderId, recipientAmount=recipientAmount,
             )
@@ -56,12 +66,12 @@ def receive_result(request):
             return HttpResponse('OK')
         else:
             subject = u'%sПришло оповещение с неожидаемым статусом' % preffix
-            mail_admins(subject, message=u'Дата: %s' % info)
+            _send_admin_email(subject, u'Дата: %s' % info)
         return HttpResponse('OK')
     else:
         subject = '{}Форма оповещения платежа: невалидные данные'.format(preffix)
         body = 'Ошибки в форме: {}\n\nДанные:{}'.format(form.errors, info)
-        mail_admins(subject, message=body)
+        _send_admin_email(subject, body)
         return HttpResponse('Bad', status=400)
 
 

@@ -4,8 +4,7 @@ import datetime
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.functional import lazy
-
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 
 URL = getattr(settings, 'INTELLECTMONEY_URL',
               'https://merchant.intellectmoney.ru/ru/')

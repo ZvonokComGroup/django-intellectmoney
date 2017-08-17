@@ -1,14 +1,24 @@
-Installing
-==========
+=====================
+django-intellectmoney
+=====================
+
+django-intellectmoney - это приложение для работы с платёжной системой IntellectMoney
+
+Установка
+=========
 
 1. ```pip install git+https://github.con/satels/django-intellectmoney```
 
-2. Добавить в `settings.py` правильные настройки для магазина.
+2. Добавить в `INSTALLED_APPS` строку `'intellectmoney'`.
 
-3. Добавить страницу, где будет выводиться форма заказа.
+3. Добавить в `settings.py` правильные настройки для магазина.
 
-Settings
-========
+4. Запустить миграции `'./manage.py migrate'`
+
+5. Добавить страницу, где будет выводиться форма заказа.
+
+Настройки
+=========
 
 *  `INTELLECTMONEY_SHOPID`
 

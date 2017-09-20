@@ -22,6 +22,7 @@ HOLD_MODE = getattr(settings, 'INTELLECTMONEY_HOLD_MODE', False)
 EXPIRE_DATE_OFFSET = getattr(settings, 'INTELLECTMONEY_EXPIRE_DATE_OFFSET',
                              datetime.timedelta(days=7)
                             )
+MAIL_FAIL_SILENTLY = getattr(settings, 'INTELLECTMONEY_MAIL_FAIL_SILENTLY', True)
 
 def get_url(name):
     return 'http://%s%s' % (

@@ -16,8 +16,8 @@ logger = logging.getLogger('intellectmoney')
 
 
 def _send_admin_email(subject, message):
-    mail_admins(subject, message=message)
-    logger.warn(u'{}: {}'.format(subject, message))
+    mail_admins(subject, message=message, fail_silently=settings.MAIL_FAIL_SILENTLY)
+    logger.info(u'{}: {}'.format(subject, message))
 
 
 @csrf_exempt

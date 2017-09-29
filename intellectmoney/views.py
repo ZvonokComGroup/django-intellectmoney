@@ -82,4 +82,4 @@ def success(request):
 
 @csrf_exempt
 def fail(request):
-    return request(request, 'intellectmoney/fail.html')
+    return render(request, 'intellectmoney/fail.html')

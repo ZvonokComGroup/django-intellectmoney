@@ -107,6 +107,7 @@ class IntellectMoneyForm(_BasePaymentForm):
     holdMode = forms.BooleanField(required=False,
                                   initial=settings.HOLD_MODE)
     hash = forms.CharField(required=settings.REQUIRE_HASH)
+    merchantReceipt = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         initial = kwargs.setdefault('initial', {})

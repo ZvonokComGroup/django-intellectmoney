@@ -22,7 +22,7 @@ def getMerchantReceiptPosition(quantity, price, tax, text):
         'price': price,
         'tax': tax,
         'text': text,
-    },
+    }
 
 
 def getMerchantReceiptString(inn, customer_contact, positions,

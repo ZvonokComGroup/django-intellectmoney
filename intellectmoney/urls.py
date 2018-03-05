@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url, include
+try:
+    from django.conf.urls import url, include
+except ImportError:
+    from django.urls import re_path as url, include
 from intellectmoney import views
 
 urlpatterns = [

@@ -42,20 +42,20 @@ def receive_result(request):
         except IntellectMoney.DoesNotExist:
             invoice = None
         if not invoice:
-            subject = u'%sОповещение об оплате несуществующего счета #%s' % (
+            subject = u'{}Оповещение об оплате несуществующего счета #{}'.format(
                 preffix, paymentId
             )
-            _send_admin_email(subject, u'Дата: %s' % info)
+            _send_admin_email(subject, u'Дата: {}'.format(info))
             return HttpResponse('OK')
         paymentStatus = data['paymentStatus']
         if paymentStatus in [5, 6, 7]:
-            subject = u'Оплата через intellectmoney #%s' % paymentId
+            subject = u'Оплата через intellectmoney #{}'.format(paymentId)
             if paymentStatus == 6:
-                message = u'%sОплачен счет %s (ЗАБЛОКИРОВАНО %s руб)' % (
+                message = u'{}Оплачен счет {} (ЗАБЛОКИРОВАНО {} руб)'.format(
                    preffix, orderId, recipientAmount,
                 )
             else:
-                message = u'%sОплачен счет %s (%s руб)' % (
+                message = u'{}Оплачен счет {} ({} руб)'.format(
                    preffix, orderId, recipientAmount,
                 )
             _send_admin_email(subject, message)
@@ -65,7 +65,7 @@ def receive_result(request):
         elif paymentStatus == 3:
             return HttpResponse('OK')
         else:
-            subject = u'%sПришло оповещение с неожидаемым статусом' % preffix
+            subject = u'{}Пришло оповещение с неожидаемым статусом'.format(preffix)
             _send_admin_email(subject, u'Дата: %s' % info)
         return HttpResponse('OK')
     else:

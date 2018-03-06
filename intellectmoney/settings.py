@@ -2,7 +2,10 @@
 import datetime
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 from django.utils.functional import lazy
 from django.contrib.sites.shortcuts import get_current_site
 

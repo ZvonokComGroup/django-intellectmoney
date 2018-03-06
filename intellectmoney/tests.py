@@ -1,6 +1,9 @@
 # -*- coding:utf-8 -*-
 from django import test
-from django.core.urlresolvers import reverse
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 from django.test import Client
 
 from intellectmoney import settings

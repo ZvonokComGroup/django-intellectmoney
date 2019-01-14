@@ -8,11 +8,11 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-intellectmoney',
-    version='0.0.2',
+    version='0.0.3',
     author='Ivan Petukhov',
     author_email='satels@gmail.com',
     packages=find_packages(exclude=['docs', 'tests']),
-    url='https://www.kontrolnaya-rabota.ru/diario/',
+    url='https://www.kontrolnaya-rabota.ru/s/',
     download_url='https://github.com/satels/django-intellectmoney/zipball/master',
     license='MIT license',
     description=u'Приложение для работы с intellectmoney.ru.',

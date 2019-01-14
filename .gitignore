@@ -5,3 +5,5 @@ dist/
 .pydevproject
 .settings/
 django_intellectmoney.egg-info/
+*.wpr
+*.wpu

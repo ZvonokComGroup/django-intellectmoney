@@ -108,6 +108,7 @@ class IntellectMoneyForm(_BasePaymentForm):
                                   initial=settings.HOLD_MODE)
     hash = forms.CharField(required=settings.REQUIRE_HASH)
     merchantReceipt = forms.CharField(required=False)
+    customerContract = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         initial = kwargs.setdefault('initial', {})
@@ -132,7 +133,7 @@ class ResultUrlForm(_BasePaymentForm):
 
     paymentId = forms.CharField(label=u'IntellectMoney Payment ID')
     paymentData = forms.DateTimeField(input_formats=['%Y-%m-%d %H:%M:%S'])
-    paymentStatus= forms.TypedChoiceField(choices=STATUS_CHOICES, coerce=int)
+    paymentStatus = forms.TypedChoiceField(choices=STATUS_CHOICES, coerce=int)
     eshopAccount = forms.CharField()
     hash = forms.CharField()
     secretKey = forms.CharField()

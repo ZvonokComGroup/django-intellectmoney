@@ -9,8 +9,6 @@ from django.test import Client
 from intellectmoney import settings
 from intellectmoney.forms import IntellectMoneyForm, ResultUrlForm
 from intellectmoney.helpers import getHashOnReceiveResult
-# Not avaliable in Django 1.3 yet
-# from django.test.utils import override_settings
 
 
 class IntellectMoneyTest(test.TestCase):
@@ -49,7 +47,7 @@ class IntellectMoneyTest(test.TestCase):
         self.assertEqual(response.status_code, 404)
         self._assertTicketExists()
 
-    # @override_settings(INTELLECTMONEY_SEND_SECRETKEY=False)
+    @test.override_settings(INTELLECTMONEY_SEND_SECRETKEY=False)
     def testResultBadShopId(self):
         settings.SEND_SECRETKEY = False
         data = self.data
@@ -64,7 +62,7 @@ class IntellectMoneyTest(test.TestCase):
         self.assertTrue('eshopId' in form.errors)
         self._assertTicketExists()
 
-    # @override_settings(INTELLECTMONEY_SEND_SECRETKEY=False)
+    @test.override_settings(INTELLECTMONEY_SEND_SECRETKEY=False)
     def testResultBadHash(self):
         settings.SEND_SECRETKEY = False
         data = self.data
@@ -80,7 +78,7 @@ class IntellectMoneyTest(test.TestCase):
         self.assertTrue('hash' in unicode(form.errors['__all__']))
         self._assertTicketExists()
 
-    # @override_settings(INTELLECTMONEY_SEND_SECRETKEY=True)
+    @test.override_settings(INTELLECTMONEY_SEND_SECRETKEY=True)
     def testResultBadSecretKey(self):
         settings.SEND_SECRETKEY = True
         data = self.data
@@ -103,9 +101,9 @@ class IntellectMoneyTest(test.TestCase):
         self.assertEqual(response.status_code, 200)
         form = ResultUrlForm(data)
         self.assertTrue(form.is_valid())
-        #TODO: Существование счетов
+        # TODO: Существование счетов
         self.assertTrue(invoices.exists())
-        #TODO: Существование платежей
+        # TODO: Существование платежей
         self.assertTrue(payments.exists())
         self._assertTicketExists()
 
@@ -119,7 +117,7 @@ class IntellectMoneyTest(test.TestCase):
         form = ResultUrlForm(data)
         self.assertTrue(form.is_valid())
         self.assertEqual(response.status_code, 200)
-        #TODO: Существование платежей
+        # TODO: Существование платежей
         self.assertFalse(payments.exists())
         self._assertTicketExists()
 

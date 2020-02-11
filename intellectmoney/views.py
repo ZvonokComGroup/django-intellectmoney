@@ -58,6 +58,11 @@ def receive_result(request):
                 message = u'{}Оплачен счет {} ({} руб)'.format(
                    preffix, orderId, recipientAmount,
                 )
+            invoice.paymentId = paymentId
+            invoice.paymentData = data['paymentData']
+            invoice.eshopAccount = data['eshopAccount']
+            invoice.eshopId = data['eshopId']
+            invoice.save()
             _send_admin_email(subject, message)
             result_received.send(
                 sender=invoice, orderId=orderId, recipientAmount=recipientAmount,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.core.mail import mail_admins
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
@@ -52,11 +51,11 @@ def receive_result(request):
             subject = u'Оплата через intellectmoney #{}'.format(paymentId)
             if paymentStatus == 6:
                 message = u'{}Оплачен счет {} (ЗАБЛОКИРОВАНО {} руб)'.format(
-                   preffix, orderId, recipientAmount,
+                    preffix, orderId, recipientAmount,
                 )
             else:
                 message = u'{}Оплачен счет {} ({} руб)'.format(
-                   preffix, orderId, recipientAmount,
+                    preffix, orderId, recipientAmount,
                 )
             invoice.paymentId = paymentId
             invoice.paymentData = data['paymentData']

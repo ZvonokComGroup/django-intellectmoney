@@ -1,6 +1,4 @@
-# coding: utf-8
 import json
-
 
 CONTENT_TYPE_RECEIPT = 1
 CONTENT_TYPE_RETURN_RECEIPT = 2
@@ -26,7 +24,7 @@ def getMerchantReceiptPosition(quantity, price, tax, text):
 
 
 def getMerchantReceiptString(inn, customer_contact, positions,
-            group='Main', content_type=CONTENT_TYPE_RECEIPT, skipAmountCheck=False):
+                             group='Main', content_type=CONTENT_TYPE_RECEIPT, skipAmountCheck=False):
     data = {
         'inn': inn,
         'group': group,

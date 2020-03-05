@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
 import datetime
 
 from django.conf import settings
-try:
-    from django.core.urlresolvers import reverse
-except ImportError:
-    from django.urls import reverse
+from django.urls import reverse
 from django.utils.functional import lazy
 from django.contrib.sites.shortcuts import get_current_site
 
@@ -24,17 +20,17 @@ SEND_SECRETKEY = getattr(settings, 'INTELLECTMONEY_SEND_SECRETKEY', False)
 HOLD_MODE = getattr(settings, 'INTELLECTMONEY_HOLD_MODE', False)
 EXPIRE_DATE_OFFSET = getattr(settings, 'INTELLECTMONEY_EXPIRE_DATE_OFFSET',
                              datetime.timedelta(days=7)
-                            )
+                             )
 MAIL_FAIL_SILENTLY = getattr(settings, 'INTELLECTMONEY_MAIL_FAIL_SILENTLY', True)
 
+
 def get_url(name):
-    return 'http://%s%s' % (
-               get_current_site(request=None), reverse(name)
-           )
+    return f'http://{get_current_site(request=None)}{reverse(name)}'
+
 
 SUCCESS_URL = getattr(settings, 'INTELLECTMONEY_SUCCESS_URL',
                       lazy(lambda: get_url('intellectmoney-success'), str),
-                     )
+                      )
 FAIL_URL = getattr(settings, 'INTELLECTMONEY_FAIL_URL',
                    lazy(lambda: get_url('intellectmoney-fail'), str)
-                  )
+                   )

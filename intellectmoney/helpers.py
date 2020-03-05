@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 import hashlib
 
 from intellectmoney import settings
 
 
 def checkHashOnReceiveResult(data):
-    hash = getHashOnReceiveResult(data)
-    return  hash == data.get('hash')
+    return getHashOnReceiveResult(data) == data.get('hash')
 
 
 def getHashOnReceiveResult(data):
@@ -22,13 +20,12 @@ def getHashOnReceiveResult(data):
     userEmail = data.get('userEmail', '')
     paymentData = data.get('paymentData')
     key = '%s::%s::%s::%s::%s::%s::%s::%s::%s::%s::%s' % (
-         eshopId, orderId, serviceName, eshopAccount, recipientAmount,
-         recipientCurrency, paymentStatus, userName, userEmail, paymentData,
-         secretKey,
+        eshopId, orderId, serviceName, eshopAccount, recipientAmount,
+        recipientCurrency, paymentStatus, userName, userEmail, paymentData,
+        secretKey,
     )
     key = key.encode('windows-1251', errors='ignore')
-    hash = hashlib.md5(key).hexdigest()
-    return hash
+    return hashlib.md5(key).hexdigest()
 
 
 def getHashOnRequest(data):
@@ -39,8 +36,7 @@ def getHashOnRequest(data):
     purchaseAmount = data.get('recipientAmount')
     currency = data.get('recipientCurrency')
     key = '%s::%s::%s::%s::%s::%s' % (
-         eshopId, orderId, serviceName, purchaseAmount, currency, secretKey,
+        eshopId, orderId, serviceName, purchaseAmount, currency, secretKey,
     )
     key = key.encode('windows-1251', errors='ignore')
-    hash = hashlib.md5(key).hexdigest()
-    return hash
+    return hashlib.md5(key).hexdigest()

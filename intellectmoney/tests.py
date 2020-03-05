@@ -1,9 +1,5 @@
-# -*- coding:utf-8 -*-
 from django import test
-try:
-    from django.core.urlresolvers import reverse
-except ImportError:
-    from django.urls import reverse
+from django.urls import reverse
 from django.test import Client
 
 from intellectmoney import settings
@@ -75,7 +71,7 @@ class IntellectMoneyTest(test.TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(len(form.errors), 1)
         self.assertTrue('__all__' in form.errors)
-        self.assertTrue('hash' in unicode(form.errors['__all__']))
+        self.assertTrue('hash' in str(form.errors['__all__']))
         self._assertTicketExists()
 
     @test.override_settings(INTELLECTMONEY_SEND_SECRETKEY=True)
@@ -94,8 +90,7 @@ class IntellectMoneyTest(test.TestCase):
 
     def testResultBadInvoiceDoesNotFound(self):
         data = self.data
-        hash = getHashOnReceiveResult(data)
-        data['hash'] = hash
+        data['hash'] = getHashOnReceiveResult(data)
         client = self.client
         response = client.post(self.url, data)
         self.assertEqual(response.status_code, 200)
@@ -110,8 +105,7 @@ class IntellectMoneyTest(test.TestCase):
     def testResultWithUnknownStatus(self):
         data = self.data
         data['paymentStatus'] = 4
-        hash = getHashOnReceiveResult(data)
-        data['hash'] = hash
+        data['hash'] = getHashOnReceiveResult(data)
         client = self.client
         response = client.post(self.url, data)
         form = ResultUrlForm(data)
@@ -125,8 +119,7 @@ class IntellectMoneyTest(test.TestCase):
         amount = '10.11'
         data = self.data
         data['orderId'] = inv.id
-        hash = getHashOnReceiveResult(data)
-        data['hash'] = hash
+        data['hash'] = getHashOnReceiveResult(data)
         client = self.client
         response = client.post(self.url, data)
         form = ResultUrlForm(data)
@@ -141,8 +134,7 @@ class IntellectMoneyTest(test.TestCase):
     def testResultAlreadyHavePaymentStatus(self):
         data = self.data
         data['orderId'] = inv.id
-        hash = getHashOnReceiveResult(data)
-        data['hash'] = hash
+        data['hash'] = getHashOnReceiveResult(data)
         client = self.client
         response = client.post(self.url, data)
         form = ResultUrlForm(data)

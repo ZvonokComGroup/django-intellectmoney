@@ -62,7 +62,6 @@ def receive_result(request):
             invoice.eshopAccount = data['eshopAccount']
             invoice.eshopId = data['eshopId']
             invoice.save()
-            _send_admin_email(subject, message)
             result_received.send(
                 sender=invoice, orderId=orderId, recipientAmount=recipientAmount,
             )

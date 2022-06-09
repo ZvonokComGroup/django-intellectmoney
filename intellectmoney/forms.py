@@ -136,6 +136,7 @@ class ResultUrlForm(_BasePaymentForm):
     eshopAccount = forms.CharField()
     hash = forms.CharField()
     secretKey = forms.CharField()
+    reccurringState = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(ResultUrlForm, self).__init__(*args, **kwargs)

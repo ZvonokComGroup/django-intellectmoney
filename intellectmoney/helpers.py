@@ -24,7 +24,7 @@ def getHashOnReceiveResult(data):
         recipientCurrency, paymentStatus, userName, userEmail, paymentData,
         secretKey,
     )
-    key = key.encode('windows-1251', errors='ignore')
+    key = key.encode('utf-8', errors='ignore')
     return hashlib.md5(key).hexdigest()
 
 
@@ -38,5 +38,5 @@ def getHashOnRequest(data):
     key = '%s::%s::%s::%s::%s::%s' % (
         eshopId, orderId, serviceName, purchaseAmount, currency, secretKey,
     )
-    key = key.encode('windows-1251', errors='ignore')
+    key = key.encode('utf-8', errors='ignore')
     return hashlib.md5(key).hexdigest()

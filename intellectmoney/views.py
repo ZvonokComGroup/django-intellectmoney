@@ -61,7 +61,7 @@ def receive_result(request):
             invoice.paymentData = data['paymentData']
             invoice.eshopAccount = data['eshopAccount']
             invoice.eshopId = data['eshopId']
-            invoice.recurringState = data['recurringState']
+            invoice.reccurringState = data['reccurringState']
             invoice.save()
             result_received.send(
                 sender=invoice, orderId=orderId, recipientAmount=recipientAmount,

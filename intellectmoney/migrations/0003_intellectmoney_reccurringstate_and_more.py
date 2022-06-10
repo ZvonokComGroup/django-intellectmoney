@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='intellectmoney',
-            name='recurringState',
+            name='reccurringState',
             field=models.CharField(max_length=255, null=True),
         ),
         migrations.AlterField(

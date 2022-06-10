@@ -9,7 +9,7 @@ class IntellectMoney(models.Model):
     paymentData = models.DateTimeField(null=True)
     eshopAccount = models.CharField(null=True, max_length=255)
     eshopId = models.CharField(null=True, max_length=255)
-    recurringState = models.CharField(null=True, max_length=255)
+    reccurringState = models.CharField(null=True, max_length=255)
 
     def __str__(self):
         return 'IntellectMoney payment (orderId: {})'.format(self.orderId)

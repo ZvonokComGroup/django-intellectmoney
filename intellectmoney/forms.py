@@ -29,6 +29,7 @@ class _BasePaymentForm(_BaseForm):
     )
     userName = forms.CharField(max_length=255, required=False)
     userEmail = forms.EmailField(required=False)
+    email = forms.EmailField(required=False)
 
 
 class IntellectMoneyForm(_BasePaymentForm):

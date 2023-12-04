@@ -29,6 +29,7 @@ class _BasePaymentForm(_BaseForm):
     )
     userName = forms.CharField(max_length=255, required=False)
     userEmail = forms.EmailField(required=False)
+    email = forms.EmailField(required=False)
 
 
 class IntellectMoneyForm(_BasePaymentForm):
@@ -41,6 +42,9 @@ class IntellectMoneyForm(_BasePaymentForm):
     PREFERENCE_TRANSFERS = 'transfers'
     PREFERENCE_SMS = 'sms'
     PREFERENCE_BANK = 'bank'
+    PREFERENCE_YANDEXPAY = 'YandexPay'
+    PREFERENCE_SBP = 'Sbp'
+    PREFERENCE_QIWIWALLET = 'QiwiWallet'
 
     # exchangers
     PREFERENCE_TELEMONEY = 'telemoney'
@@ -63,32 +67,36 @@ class IntellectMoneyForm(_BasePaymentForm):
         # common
         (PREFERENCE_INNER, 'IntellectMoney'),
         (PREFERENCE_BANKCARD, 'Visa/MasterCard'),
-        (PREFERENCE_EXCHANGERS, u'Internet Exchangers'),
-        (PREFERENCE_TERMINALS, u'Terminals'),
-        (PREFERENCE_TRANSFERS, u'Transfers'),
+        (PREFERENCE_EXCHANGERS, 'Internet Exchangers'),
+        (PREFERENCE_TERMINALS, 'Terminals'),
+        (PREFERENCE_TRANSFERS, 'Transfers'),
         (PREFERENCE_SMS, 'SMS'),
-        (PREFERENCE_BANK, u'Bank'),
+        (PREFERENCE_BANK, 'Bank'),
+        (PREFERENCE_YANDEXPAY, 'Yandex Pay'),
+        (PREFERENCE_SBP, 'Система быстрых платежей'),
+        (PREFERENCE_QIWIWALLET, 'QiwiWallet'),
 
         # exchangers
         (PREFERENCE_TELEMONEY, 'Telemoney'),
         (PREFERENCE_RBKMONEY, 'RBKMoney'),
-        (PREFERENCE_YANDEX, u'Яндекс.деньги'),
-        (PREFERENCE_MONEYMAIL, u'MoneyMail'),
-        (PREFERENCE_WALET, u'Единый кошелек'),
-        (PREFERENCE_EASYPAY, u'EasyPay'),
-        (PREFERENCE_LIQPAY, u'LiqPay'),
-        (PREFERENCE_ZPAYMENT, u'Zpayment'),
-        (PREFERENCE_QIWIPURSE, u'QIWI Кошелек'),
-        (PREFERENCE_VKONTAKTEBANK, u'В Контакте'),
-        (PREFERENCE_MAILRU, u'Деньги@Mail.Ru'),
-        (PREFERENCE_AMEGAEKO, u'Единая Кнопка Оплаты'),
-        (PREFERENCE_MOBIMONEY, u'С баланса телефона'),
-        (PREFERENCE_RAPIDA, u'В салонах связи'),
-        (PREFERENCE_ALFACLICK, u'AlfaClick'),
+        (PREFERENCE_YANDEX, 'Яндекс.деньги'),
+        (PREFERENCE_MONEYMAIL, 'MoneyMail'),
+        (PREFERENCE_WALET, 'Единый кошелек'),
+        (PREFERENCE_EASYPAY, 'EasyPay'),
+        (PREFERENCE_LIQPAY, 'LiqPay'),
+        (PREFERENCE_ZPAYMENT, 'Zpayment'),
+        (PREFERENCE_QIWIPURSE, 'QIWI Кошелек'),
+        (PREFERENCE_VKONTAKTEBANK, 'ВКонтакте'),
+        (PREFERENCE_MAILRU, 'Деньги@Mail.Ru'),
+        (PREFERENCE_AMEGAEKO, 'Единая Кнопка Оплаты'),
+        (PREFERENCE_MOBIMONEY, 'С баланса телефона'),
+        (PREFERENCE_RAPIDA, 'В салонах связи'),
+        (PREFERENCE_ALFACLICK, 'AlfaClick'),
 
         # groups
         ('inner,bankCard,exchangers,terminals,bank,transfers,sms', u'All'),
         ('bankCard,exchangers,terminals,bank,transfers,sms', u'All without inner'),
+        ('Sbp,bankCard,YandexPay', 'Sbp and other top'),
     ]
 
     successUrl = forms.CharField(

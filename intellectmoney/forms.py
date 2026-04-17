@@ -108,7 +108,6 @@ class IntellectMoneyForm(_BasePaymentForm):
     hash = forms.CharField(required=settings.REQUIRE_HASH)
     merchantReceipt = forms.CharField(required=False)
     customerContract = forms.CharField(required=False)
-    recurringType = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         initial = kwargs.setdefault('initial', {})
@@ -135,9 +134,10 @@ class ResultUrlForm(_BasePaymentForm):
     paymentData = forms.DateTimeField(input_formats=['%Y-%m-%d %H:%M:%S'])
     paymentStatus = forms.TypedChoiceField(choices=STATUS_CHOICES, coerce=int)
     eshopAccount = forms.CharField()
+    shortPan = forms.CharField(required=False)
+    brandType = forms.CharField(required=False)
     hash = forms.CharField()
     secretKey = forms.CharField()
-    recurringState = forms.CharField(required=False)
 
     def __init__(self, *args, **kwargs):
         super(ResultUrlForm, self).__init__(*args, **kwargs)

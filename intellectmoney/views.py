@@ -61,10 +61,15 @@ def receive_result(request):
             invoice.paymentData = data['paymentData']
             invoice.eshopAccount = data['eshopAccount']
             invoice.eshopId = data['eshopId']
-            invoice.recurringState = data['recurringState']
             invoice.save()
+            shortPan = data['shortPan']
+            brandType = data['brandType']
             result_received.send(
-                sender=invoice, orderId=orderId, recipientAmount=recipientAmount,
+                sender=invoice,
+                orderId=orderId,
+                recipientAmount=recipientAmount,
+                shortPan=shortPan,
+                brandType=brandType,
             )
         elif paymentStatus == 3:
             return HttpResponse('OK')
